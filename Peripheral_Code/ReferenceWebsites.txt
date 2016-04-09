@@ -1,0 +1,20 @@
+TMP36 websites:
+https://learn.adafruit.com/send-raspberry-pi-data-to-cosm/connecting-the-cobbler-slash-mcp3008-slash-tmp36
+
+Closing and opening shutters:
+http://egrasland.blogspot.com/2014/01/control-your-velux-roller-shutter-with.html
+
+Enabling I2C on PI:
+https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
+http://www.raspberrypi-spy.co.uk/2014/11/enabling-the-i2c-interface-on-the-raspberry-pi/
+http://www.raspberry.bplaced.net/raspberry_en/start.php
+
+TSL2561 Tutorial:
+https://learn.adafruit.com/tsl2561/
+https://github.com/adafruit/Adafruit_TSL2561
+http://www.raspberry.bplaced.net/raspberry_en/start.php
+https://github.com/seanbechhofer/raspberrypi/blob/master/python/TSL2561.py
+https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code/blob/master/Adafruit_I2C/Adafruit_I2C.py
+
+Servo Motor:
+https://learn.adafruit.com/adafruits-raspberry-pi-lesson-8-using-a-servo-motor/overview
