@@ -20,17 +20,18 @@ def getLight():
     x |= i2c.readU8(0xAC)
     return x
 
+# collects luminosity data
 while True:
     enable()
     
     # Gets the current light value
     light = getLight()
-    print light
+    #print light
 
     # We write the data to tsl_output.txt to be sent over TCP
-    with open("tsl_output.txt", "a") as textfile:
+    with open("/home/pi/sensor-readings/tsl_output.txt", "a") as textfile:
         textfile.write(str(light)+"\n")
 
     # Delay between readings
-    time.sleep(1)
+    time.sleep(5)
     
