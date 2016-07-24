@@ -1,2 +1,2 @@
-- tsl2561.py is not our main method of collecting luminosity data. The file is backup in case tsl.py break for whatever reason. 
+- tsl2561.py is not our main method of collecting luminosity data. The file is backup in case tsl.py breaks for whatever reason. 
 - Adafruit_I2C.py is a helper library imported to run tsl.py successfully. Was obtained online.
