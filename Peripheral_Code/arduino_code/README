@@ -1,0 +1,3 @@
+- ShuttersMain is basically main.cpp. It calls the functions from the rest of the source files.
+- The setup to run on the Arduino IDE is weird. I had to make a library directory for the src files (everything except ShuttersMain) in ~/Documents/Arduino/libraries/. I called this directory "Shutters".
+	- ShuttersMain can just be copied onto a new sketch (Arduino's name for main.cpp file) and ran.
