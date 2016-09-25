@@ -18,3 +18,6 @@ https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code/blob/master/Adafru
 
 Servo Motor:
 https://learn.adafruit.com/adafruits-raspberry-pi-lesson-8-using-a-servo-motor/overview
+
+XBee:
+http://www.digi.com/support/forum/10257/help-programming-xbee-module-using-c-c-over-rs232
