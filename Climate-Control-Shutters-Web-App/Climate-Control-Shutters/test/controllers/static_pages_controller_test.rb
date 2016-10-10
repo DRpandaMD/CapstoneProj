@@ -2,9 +2,9 @@ require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   test "should get home" do
-    get static_pages_home_url
+    get root_url
     assert_response :success
-    assert_select "title", "Home | Climate Control Shutters Web App"
+    assert_select "title", "Climate Control Shutters Web App"
   end
 
   test "should get help" do
