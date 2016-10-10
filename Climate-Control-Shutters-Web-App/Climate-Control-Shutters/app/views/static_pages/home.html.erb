@@ -4,11 +4,15 @@
 	<head>
 		<title><%= yield(:title) %></title>
 	</head>
-	<body>
-		<h1>Climate Control Shutters</h1>
-		<p>
+	<div class="center jumbotron">
+		<h1> Welcome to the Climage Control Shutters Web App</h1>
+
+		<h2>
 			This is the landing page for Climate Control Shutters. <br>
-			Part of the 2016 CSE 424 Capstone Class
-		</p>
-	</body>
+			Part of the 2016 CSE 424 Capstone Class 
+		</h2>
+
+		<%= link_to "sign in / sign up", "#", class: "btn btn-lg btn-primary" %>
+	</div>
+
 </html>
