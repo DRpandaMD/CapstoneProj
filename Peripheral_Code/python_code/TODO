@@ -1,0 +1,17 @@
+SSH
+- make script to scp temp/light data file to Mueth's computer
+    - would need to check whether computer is on
+- make crontjob to run script hourly or bi-hourly
+- set up ssh into RPi from any client
+
+Peripherals
+- collect new data point every 5 seconds
+- change from open to closed when 3 minutes worth of consecutive readings fall within the new state
+
+XBee
+- find out how to synchronize the XBees in a way such that if the RPi is restarted for any reason, it doesn't begin execution of the CollectData.py script halfway through the transmission of an Arduino
+	- this would screw up the numbers
+- make script to update the light and temp data files with Dates
+	- makes it simple if Dr. Meuth wants to look at the files; he can see what days the readings are for
+	- start a new file each week
+	- cronjob for writing Dates and for deleting week old files

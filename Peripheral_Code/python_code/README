@@ -1,0 +1,24 @@
+# This file clarifies and uncertainties in the way that the scripts within this directory work
+
+CollectData.py
+- continuously checks and parses incoming data from any of the Arduino modules
+	- incoming sensor data will be in the form of a 10-reading average
+- writes the data averages to corresponding files in ./temp and ./light 
+
+light (dir)
+- houses light data collected
+	- files are called <id>_light, where id is the number assigned to each Arduino module
+- data files will have all readings received by the RPi, organized by the date
+- data is week long; at the end of each week, the file is deleted and started from scratch 
+
+temp (dir)
+- houses temperature data collected
+	- files are called <id>_temp, where id is the number assigned to each Arduino module
+- data files will have all readings received by the RPi, organized by the date
+- data is week long; at the end of each week, the file is deleted and started from scratch
+
+scripts (dir)
+- the following scripts are run automatically using cronjobs
+- addDate.sh takes care of adding the date to the data files found within ./temp and ./light
+	- format for the date is dd-mm-yyyy
+- delDataFile.sh deletes the week long data files within ./temp and ./light and starts them fresh
