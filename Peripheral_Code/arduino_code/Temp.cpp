@@ -20,6 +20,18 @@ float get_temp_reading(int sensorPin) {
 	return tempF;
 }
 
+float get_clustered_temp_reading(int sensorPin) {
+	float total = 0.0;
+
+	// Collects 10 readings and adds them to total
+	for (unsigned int i=0; i<10; i++) {
+		total += get_temp_reading(sensorPin);
+		delay(500); // Waits half a second between readings
+	}
+
+	return total/10; // returns the average
+}
+
 void debug_temp() {
 	Serial.println("Check");
 }

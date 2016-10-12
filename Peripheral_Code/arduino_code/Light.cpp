@@ -30,3 +30,15 @@ float get_light_reading() {
 
 	return tsl.calculateLux(full, ir);
 }
+
+float get_clustered_light_reading() {
+	float total = 0.0;
+
+	// Collects 10 readings and adds them to total
+	for (unsigned int i=0; i<10; i++) {
+		total += get_light_reading();
+		delay(500); // Waits half a second between readings
+	}
+
+	return total/10; // returns the average
+}
