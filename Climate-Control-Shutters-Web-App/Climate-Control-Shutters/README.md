@@ -11,6 +11,7 @@ Things you may want to cover:
 * System dependencies
 
 * Configuration
+	Creating Users as temporary idea until get the the rest of the data modeling figured out
 
 * Database creation
 
