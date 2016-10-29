@@ -3,38 +3,51 @@
 #include "Light.h"
 
 int tempSensorPin = 0; // Required by the function that gets the temp reading
-//SoftwareSerial XBee(0, 1); // RX, TX
 int power = 1; // state of module; 1 for ON and 0 for OFF
+int inputData; // stores the input from any incoming broadcasts
 
 void setup() {
   Serial.begin(9600); 
-  //XBee.begin(9600); // Not too sure what this is doing
   light_setup();  
 }
 
 void loop() {
-  /***********************************
-  ***** Check for manual inputs *****
-  ***********************************/ 
-  /*while (Serial.available()) {
-    Serial.print("Stuff came in\n");
-    Serial.print(Serial.read());
-    Serial.print("\n");
-  }*/
-
-  while (Serial.available()) {
-    Serial.println(Serial.read()); // Reads any incoming data from RPi
-  }
   /**************************************
   ***** React to manual inputs here *****
   **************************************/ 
   /* Steps:
-   * - check id of incoming serial data as all modules will broadcast their info; react only if sent from id 0 (RPi) 
-   * - format will be <id><1/0 (Power ON/OFF)>
-   * - set power variable equal to incoming data
-   */
+  * - check ID of incoming serial data, since all modules will broadcast their data; react only if sent from ID 0 (RPi) 
+  * - format will be <ID><1 or 0 for ON/OFF><000000> where the zeros are fillers -- ex. 01000000
+  * - set the power variable depending on what was sent by the RPi; power variable tells the Arduino 
+  *   to continue or halt its operation
+  * ************************************
+  * The data being broadcasted by the sender is in the form of "1" and "0" characters. 
+  * The Serial.read() command below interprets the 1 and 0 chars as the equivalent decimal ascii value. 
+  * Therefore we must compose an 8 char string from the ascii values received.
+  */
+  while (Serial.available()) {
+    String command = "";
+
+    // Constructs the 8 character string data
+    for (int i=0; i<8; i++) {
+      inputData = Serial.read(); // Reads any incoming data
+      command += (char)inputData; // appends the char representation from the ascii value received
+    }
+    
+    Serial.print("Data received: ");
+    Serial.println(command);
+    
+    // check whether the received broadcast is from RPi or other modules. If from other modules, then ignore
+    if (command[0] == '0') {
+      Serial.println("Data was sent from RPi");
+      if (command[1] == '1') power = 1;
+      else power = 0;
+    }
+    else Serial.println("Data was sent from another Arduino\nData will be ignored");
+  }
    
-   
+  Serial.println("About to run the sensor section");
+  
   /**********************************
   ***** Get light/temp readings *****
   **********************************/
@@ -49,17 +62,10 @@ void loop() {
     
     // Prints data to serial monitor which causes a broadcast to all XBee devices
     Serial.print(outputData);
-    
-    // Found code that used the XBee.command() format but I'm
-    // not sure what it does, since Serial.command() already 
-    // takes care of broadcasting the data
-    //XBee.write(tempReading);
-    //XBee.write(lightReading);
-    //XBee.println("5 seconds have passed");
-  
-    // Sleep 5 seconds
-    delay(5000);
   }
+  
+  // Sleep 5 seconds
+  delay(5000);
 }
 
 // Formats the data into a compact transmission string
