@@ -15,3 +15,5 @@ XBee
 	- makes it simple if Dr. Meuth wants to look at the files; he can see what days the readings are for
 	- start a new file each week
 	- cronjob for writing Dates and for deleting week old files
+- make new python script to send manual commands to arduino modules
+	- called turnModuleON.py and turnModuleOFF.py
