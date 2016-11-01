@@ -26,7 +26,7 @@ float get_clustered_temp_reading(int sensorPin) {
 	// Collects 10 readings and adds them to total
 	for (unsigned int i=0; i<10; i++) {
 		total += get_temp_reading(sensorPin);
-		delay(500); // Waits half a second between readings
+		delay(250); // Waits a quarter second between readings
 	}
 
 	return total/10; // returns the average

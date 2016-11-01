@@ -18,7 +18,9 @@ temp (dir)
 - data is week long; at the end of each week, the file is deleted and started from scratch
 
 scripts (dir)
-- the following scripts are run automatically using cronjobs
+- addDate.sh and delDataFile.sh are run automatically through the crontab utility 
 - addDate.sh takes care of adding the date to the data files found within ./temp and ./light
 	- format for the date is dd-mm-yyyy
 - delDataFile.sh deletes the week long data files within ./temp and ./light and starts them fresh
+- turnModulesON.py broadcasts a signal to resume operation of the Arduino modules
+- turnModulesOFF.py broadcasts a signal to halt operation of the Arduino modules

@@ -6,6 +6,7 @@ ser = serial.Serial('/dev/ttyUSB0', 9600)
 
 # Forever loop to grab incoming data
 while True:
+	# Need to figure out way to set times at which the modules can transmit data
 	incoming = ser.read(8)
 	print "%s" % incoming
 
@@ -17,8 +18,8 @@ while True:
 	print "id:%s, temp:%s, light:%s" % (moduleID, temp, light)
 
 	# store data in corresponding files
-	tempFile = open("/home/pi/Documents/Shutters_Scripts/temp/%s_temp" % moduleID, 'a') # absolute path of temperature file
-	lightFile = open("/home/pi/Documents/Shutters_Scripts/light/%s_light" % moduleID, 'a')  # absolute path of light file
+	tempFile = open("/home/pi/Documents/Shutter_Project/temp/%s_temp" % moduleID, 'a') # absolute path of temperature file
+	lightFile = open("/home/pi/Documents/Shutter_Project/light/%s_light" % moduleID, 'a')  # absolute path of light file
 	
 	tempFile.write(temp + "\n")
 	lightFile.write(light)
