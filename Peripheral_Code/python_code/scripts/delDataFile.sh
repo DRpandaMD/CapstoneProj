@@ -1,11 +1,14 @@
 #!/bin/bash
 
 # Removes all data files
-rm /home/pi/Documents/Shutter_Project/sensor_data/module_* >/dev/null 2>&1 || true
+rm /home/pi/Documents/Shutters_Scripts/temp/*_temp >/dev/null
+rm /home/pi/Documents/Shutters_Scripts/light/*_light >/dev/null
 
-# Create new data files
-touch /home/pi/Documents/Shutter_Project/sensor_data/module_{1..6}
+# Create data files
+touch /home/pi/Documents/Shutters_Scripts/temp/{1..6}_temp
+touch /home/pi/Documents/Shutters_Scripts/light/{1..6}_light
 
-# Adds search directions and column names to data files
-echo "To search for a data, type '/dd-mm-yyyy<enter>'" | tee \
-    /home/pi/Documents/Shutter_Project/sensor_data/module_{1..6} >/dev/null
+# Adds search directions to light and temp files
+echo "To search for a date type '/dd-mm-yyyy<enter>'" | tee \
+	/home/pi/Documents/Shutters_Scripts/temp/{1..6}_temp \
+	/home/pi/Documents/Shutters_Scripts/light/{1..6}_light >/dev/null
