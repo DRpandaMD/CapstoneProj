@@ -1,4 +1,0 @@
-This directory holds the light data collected from the Arduino modules. 
-
-- Each file holds weekly readings
-- Data within each file is organized by the day of the week
