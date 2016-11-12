@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'datas/new'
+
   get 'users/new'
 
   get 'user/new'
