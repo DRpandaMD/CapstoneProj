@@ -1,26 +1,21 @@
-# This file clarifies and uncertainties in the way that the scripts within this directory work
+# This file clarifies any uncertainties in the way that the scripts within this directory work
 
 CollectData.py
 - continuously checks and parses incoming data from any of the Arduino modules
 	- incoming sensor data will be in the form of a 10-reading average
-- writes the data averages to corresponding files in ./temp and ./light 
+- writes the data averages to corresponding file in ./sensor_data 
 
-light (dir)
-- houses light data collected
-	- files are called <id>_light, where id is the number assigned to each Arduino module
-- data files will have all readings received by the RPi, organized by the date
-- data is week long; at the end of each week, the file is deleted and started from scratch 
-
-temp (dir)
-- houses temperature data collected
-	- files are called <id>_temp, where id is the number assigned to each Arduino module
-- data files will have all readings received by the RPi, organized by the date
-- data is week long; at the end of each week, the file is deleted and started from scratch
+sensor_data (dir)
+- houses the temp and light data collected from the modules
+	- files are called "module_<id#>", where id is the number assigned to each Arduino module
+- each data file has the temp and light data for that module
+- dates are listed within the data file for easier viewing
+- data file grows up to a week before its automatically discarded and started again
 
 scripts (dir)
 - addDate.sh and delDataFile.sh are run automatically through the crontab utility 
-- addDate.sh takes care of adding the date to the data files found within ./temp and ./light
+- addDate.sh takes care of adding the date to the data files found within ./sensor_data
 	- format for the date is dd-mm-yyyy
-- delDataFile.sh deletes the week long data files within ./temp and ./light and starts them fresh
+- delDataFile.sh deletes the week long data files within ./sensor_data and starts them again
 - turnModulesON.py broadcasts a signal to resume operation of the Arduino modules
 - turnModulesOFF.py broadcasts a signal to halt operation of the Arduino modules

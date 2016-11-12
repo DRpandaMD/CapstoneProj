@@ -1,5 +1,4 @@
 # Collects data from various Arduino modules. Parses the data and stores it in appropriate files
-
 import serial
 
 ser = serial.Serial('/dev/ttyUSB0', 9600)
@@ -13,16 +12,12 @@ while True:
 	# parse the data
 	moduleID = incoming[0]
 	temp = incoming[1:4]
-	light = incoming[4:]
+	light = incoming[4:7]
 	
 	print "id:%s, temp:%s, light:%s" % (moduleID, temp, light)
 
-	# store data in corresponding files
-	tempFile = open("/home/pi/Documents/Shutter_Project/temp/%s_temp" % moduleID, 'a') # absolute path of temperature file
-	lightFile = open("/home/pi/Documents/Shutter_Project/light/%s_light" % moduleID, 'a')  # absolute path of light file
+	# Open and write to data file
+	dataFile = open("/home/pi/Documents/Shutter_Project/sensor_data/module_%s" % moduleID, 'a') # abs path of data file
+	dataFile.write(temp + "F\t" + light + " lumens\n")
 	
-	tempFile.write(temp + "\n")
-	lightFile.write(light)
-	
-	tempFile.close()
-	lightFile.close()
+	dataFile.close()
