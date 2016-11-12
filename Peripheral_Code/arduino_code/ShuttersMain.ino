@@ -1,14 +1,17 @@
 #include <SoftwareSerial.h>
 #include "Temp.h"
 #include "Light.h"
+#include "Servo.h"
 
+Servo motor;
 int tempSensorPin = 0; // Required by the function that gets the temp reading
 int power = 1; // state of module; 1 for ON and 0 for OFF
 int inputData; // stores the input from any incoming broadcasts
 
 void setup() {
-  Serial.begin(9600); 
-  light_setup();  
+  Serial.begin(9600);
+  light_setup();
+  motor.attach(9, 1000, 2000); // digital pin 9, 1000/2000 min/max PWM limits
 }
 
 void loop() {
@@ -45,8 +48,6 @@ void loop() {
     }
     else Serial.println("Data was sent from another Arduino\nData will be ignored");
   }
-   
-  Serial.println("About to run the sensor section");
   
   /**********************************
   ***** Get light/temp readings *****
