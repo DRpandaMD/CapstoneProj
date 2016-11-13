@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   	def create
   		@user = User.new(user_params) #Not the final implementation!!
   		if @user.save
-  			#handle a successful save
+  			flash[:success] = "Welcome to the Climate Control Shutters Ruby on Rails Web App"
+  			redirect_to @user
   		else
   			render 'new'
   		end
