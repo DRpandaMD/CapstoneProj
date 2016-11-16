@@ -4,6 +4,7 @@
 #include "Servo.h"
 
 Servo motor;
+bool servo_state;
 int tempSensorPin = 0; // Required by the function that gets the temp reading
 int power = 1; // state of module; 1 for ON and 0 for OFF
 int inputData; // stores the input from any incoming broadcasts
@@ -28,6 +29,17 @@ void loop() {
   * The Serial.read() command below interprets the 1 and 0 chars as the equivalent decimal ascii value. 
   * Therefore we must compose an 8 char string from the ascii values received.
   */
+  if(servo_state)
+    {
+      motor.write(180);
+      servo_state = false;
+    }
+    else
+    {
+      motor.write(0);
+      servo_state = true;
+     }
+  
   while (Serial.available()) {
     String command = "";
 
