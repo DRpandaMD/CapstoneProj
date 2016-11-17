@@ -4,7 +4,7 @@
 #include "Servo.h"
 
 Servo motor;
-bool servo_state;
+int servo_pos = 0;
 int tempSensorPin = 0; // Required by the function that gets the temp reading
 int power = 1; // state of module; 1 for ON and 0 for OFF
 int inputData; // stores the input from any incoming broadcasts
@@ -29,16 +29,6 @@ void loop() {
   * The Serial.read() command below interprets the 1 and 0 chars as the equivalent decimal ascii value. 
   * Therefore we must compose an 8 char string from the ascii values received.
   */
-  if(servo_state)
-    {
-      motor.write(180);
-      servo_state = false;
-    }
-    else
-    {
-      motor.write(0);
-      servo_state = true;
-     }
   
   while (Serial.available()) {
     String command = "";
@@ -69,6 +59,15 @@ void loop() {
     // Converted to integers to keep the XBee transmission simple
     int tempReading = (int)get_clustered_temp_reading(tempSensorPin);
     int lightReading = (int)get_clustered_light_reading();
+    
+    if((tempReading >=85) || (lightReading >=350))   
+    {
+      for (servo_pos = 180; servo_pos >= 0; servo_pos -= 1)  // goes from 180 degrees to 0 degrees to close shutter 
+      { 
+        motor.write(servo_pos);              // tell servo to go to position in variable 'pos'
+        delay(20);                       // waits 20ms for the servo to reach the position
+      }
+    }
     
     // Creates data string in the appropriate format for transmission to RPi
     String outputData = format_data("1", tempReading, lightReading);
