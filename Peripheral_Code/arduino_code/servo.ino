@@ -18,11 +18,13 @@ Servo motor;  // create servo object to control a servo
 
 int servo_pos = 0;    // variable to store the servo position
 
-void setup() {
+void setup() 
+{
   motor.attach(9,1000,2000);  // attaches the servo on pin 9 to the servo object
 }
 
-void loop() {
+void loop() 
+{
   for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
     // in steps of 1 degree
     motor.write(servo_pos);              // tell servo to go to position in variable 'pos'
