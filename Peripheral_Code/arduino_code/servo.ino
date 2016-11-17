@@ -11,34 +11,25 @@ May 17, 2016
 Development environment specifics:
 Arduino 1.6.5
 ******************************************************************************/
-
 #include <Servo.h>
 
-Servo myservo;
+Servo motor;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
 
-uint32_t next;
-bool state;
-void setup()
-{
-  // the 1000 & 2000 set the pulse width 
-  // mix & max limits, in microseconds.
-  // Be careful with shorter or longer pulses.
-  myservo.attach(9, 1000, 2000);
-  //digital 9 pin on arduino
+int servo_pos = 0;    // variable to store the servo position
+
+void setup() {
+  motor.attach(9,1000,2000);  // attaches the servo on pin 9 to the servo object
 }
 
-void loop()
-{
-  if(state)
-    {
-      myservo.write(180);
-      state = false;
-    }
-    else
-    {
-      myservo.write(0);
-      state = true;
-      
-    }
+void loop() {
+  for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    motor.write(servo_pos);              // tell servo to go to position in variable 'pos'
+    delay(20);                       // waits 15ms for the servo to reach the position
   }
-
+  for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+    motor.write(servo_pos);              // tell servo to go to position in variable 'pos'
+    delay(20);                       // waits 15ms for the servo to reach the position
+  }
+}
