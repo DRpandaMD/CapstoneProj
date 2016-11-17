@@ -60,9 +60,9 @@ void loop() {
     int tempReading = (int)get_clustered_temp_reading(tempSensorPin);
     int lightReading = (int)get_clustered_light_reading();
     
-    if((tempReading >=85) || (lightReading >=350))   
+    if((tempReading >=85) || (lightReading >=350) || (lightReading <=3))  
     {
-      for (servo_pos = 180; servo_pos >= 0; servo_pos -= 1)  // goes from 180 degrees to 0 degrees to close shutter 
+      for (servo_pos = 0; servo_pos <= 180; servo_pos += 1)  // goes from 180 degrees to 0 degrees to close shutter 
       { 
         motor.write(servo_pos);              // tell servo to go to position in variable 'pos'
         delay(20);                       // waits 20ms for the servo to reach the position
